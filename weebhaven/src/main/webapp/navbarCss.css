@@ -1,4 +1,23 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
+
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
+}
+
+header .searchbar{
+    margin-right: 7px;
+    border-radius: 5px;
+}
+
+.navbar-brand {
+    float: left; 
+    margin-left: 50px; 
+}
+
