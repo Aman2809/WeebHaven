@@ -13,6 +13,11 @@
   .list-container {
     background-color: #333;
     padding: 20px;
+    width: 300px;
+    height: 500px;
+    overflow-y:scroll;
+    margin-right: -20px;
+    float: right; 
   }
   .name-list {
     list-style-type: none;
@@ -22,32 +27,98 @@
   .name-list li {
     color: white;
     padding: 10px;
+    font-size: 13px;
+  }
+  .name-list li:hover {
+    background-color: blue; /* Change text color to blue on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+
+  .description_box{
+    height: 500px;
+    width: 300px;
+    background-color: #333;
+    float: left; 
+    color: white;
+  }
+  .profile-image {
+    width: 50%;
+    height: 30%;
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  .name {
     font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+  }
+  .description {
+    font-size: 14px;
   }
 </style>
 </head>
 <body>
 
+<div style="float: right;">
+    <div style="background-color: #333; width: 350px; height: 40px; margin-right: -30px; display: flex; text-align: center;">
+        <p style="color: rgb(57, 218, 57);  margin-left: 20px;" id="episodes_count"></p>
+    </div>
 <div class="list-container">
   <ul id="nameList" class="name-list">
-    <!-- List items will be added here dynamically -->
+   
   </ul>
 </div>
+</div>
 
+<div class="description_box">
+    <img src="" alt="Profile Image" class="profile-image" id="profileImage">
+    <div class="name" id="profileName"></div>
+    <div class="description" id="profileDescription"></div>
+</div>
 <script>
   // Function to add a new name to the list
   function addName(name) {
     var list = document.getElementById("nameList");
     var listItem = document.createElement("li");
-    listItem.textContent = name;
+    var count=list.childElementCount;
+    listItem.textContent = (count+1)+"    "+name;
     list.appendChild(listItem);
   }
 
+  function setEpisodesCount(count){
+     var episodescount=document.getElementById("episodes_count");
+     episodescount.append("Episoides :"+count);
+  }
+  // Function to set profile information
+  function setProfileInfo(imageUrl, name, description) {
+    document.getElementById("profileImage").src = imageUrl;
+    document.getElementById("profileName").textContent = name;
+    document.getElementById("profileDescription").textContent = description;
+  }
+  
+  setEpisodesCount(34);
+  //Example image , name and descrption adding 
+  setProfileInfo("res/complement.jpg" , "subham shaw" , "he is hakla man with no sense of humour he is a idiot , fill with full of idioticity");
   // Example: Adding some names to the list
   addName("John");
   addName("Mary");
   addName("David");
   addName("Susan");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
+  addName("Michael");
   addName("Michael");
 </script>
 
