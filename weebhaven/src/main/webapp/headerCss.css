@@ -118,7 +118,7 @@ header .searchbar {
 header .wrapper {
     position: absolute;
     z-index: 9999;
-    top: 9vh;
+    top: 22vh;
     left: 35vw;
     width: 400px;
     height: 400px;
