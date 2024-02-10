@@ -36,6 +36,34 @@
     height: 75px;
 }
 
+
+.navbar-nav {
+    display: flex;
+    justify-content: space-between; /* Align items with space between them */
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .navbar-brand {
+    font-family: var(--poppins-font);
+    font-size: 1.3em;
+}
+
+  /* Style the links inside the navbar */
+  .navbar-nav li {
+    margin: 0 20px; /* Adjust this value to change the space between list items */
+  }
+
+  .navbar-nav li a{
+    font-family: var(--salsa-font);
+    color: black;
+  }
+
+
+  .navbar-nav a:hover {
+    color: #666;
+  }
+
 header .searchbar {
     margin-right: 7px;
     border-radius: 5px;
@@ -175,9 +203,9 @@ header .wrapper.active-popup{
     right: 0;
     width: 45px;
     height: 45px;
+    color: #fff;
     background: #162938;
     font-size: 2em;
-    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,7 +216,8 @@ header .wrapper.active-popup{
 
 .wrapper .form-box h2 {
     font-size: 2em;
-    color: #162938;
+    /* color: #162938; */
+    color: white;
     text-align: center;
 }
 
@@ -196,7 +225,9 @@ header .wrapper.active-popup{
     position: relative;
     width: 100%;
     height: 50px;
-    border-bottom: 2px solid #162938;
+    /* border-bottom: 2px solid #162938; */
+    border-bottom: 2px solid white;
+
     margin: 30px 0;
 }
 
@@ -206,7 +237,8 @@ header .wrapper.active-popup{
     left: 5px;
     transform: translateY(-50%);
     font-size: 1em;
-    color: #162938;
+    /* color: #162938; */
+    color: white;
     font-weight: 500;
     pointer-events: none;
     transition: .5s;
@@ -233,12 +265,12 @@ header .wrapper.active-popup{
     position: absolute;
     right: 8px;
     font-size: 1.2rem;
-    color: #162938;
+    color:white;
     line-height: 57px;
 }
 .wrapper .remember-forget{
     font-size: .9em;
-    color: #162938;
+    color: white;
     font-weight: 500;
     margin: -15px 0 15px;
     display: flex;
@@ -253,7 +285,7 @@ header .wrapper.active-popup{
 }
 
 .remember-forget a{
-    color: #162938;
+    color: white;
     text-decoration: none;
 
 }
@@ -276,13 +308,13 @@ header .wrapper.active-popup{
 
 .login-register{
     font-size: .9em;
-    color: #162938;
+    color: white;
     text-align: center;
     margin: 25px 0 10px;
 }
 
 .login-register p a{
-    color: #162938;
+    color: white;
     text-decoration: none;
     font-weight: 600;
 
@@ -299,4 +331,8 @@ header .wrapper .form-box {
     padding: 40px;
     text-align: center;
 }
+
+body.popup-open {
+    overflow: hidden;
+  }
 /* ----------------------------------   LOGIN-PAGE---------------------------- */
