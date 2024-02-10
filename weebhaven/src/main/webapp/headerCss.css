@@ -1,3 +1,28 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Lato:wght@700&family=Lemon&family=Mulish:wght@600&family=Poppins:wght@500&family=Protest+Strike&family=Salsa&display=swap');
+
+
+
+  :root {
+    --fjilla-font: 'Fjalla One', sans-serif;
+    --lato-font: 'Lato', sans-serif;
+    --lemon-font: 'Lemon', serif;
+    --poppins-font: 'Poppins', sans-serif;
+    --salsa-font: 'Salsa', cursive;
+    --mulish-font:'Mulish', sans-serif;
+    --P_strike-font:'Protest Strike', sans-serif;
+    --light-black: #2e2c2caf;
+    --bggradient:linear-gradient(90deg,rgba(20,20,20,0.75) 5%, rgba(0,0,0,0.07) 50%);
+    --bg-section1: linear-gradient(to right, #4688ce, #ffffff);
+    --light-grey: rgba(255, 255, 255, 0);
+
+}
+
+
+
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -16,10 +41,18 @@ header .searchbar {
     border-radius: 5px;
 }
 
+
 .navbar-brand {
     float: left;
     margin-left: 50px;
 }
+
+.btn-circle {
+    width: 50px; /* Set width and height to be equal */
+    height: 50px;
+    border-radius: 70%; /* Make it circular */
+    margin-right: 10px;
+  }
 
 
 .carousel-inner {
@@ -29,7 +62,6 @@ header .searchbar {
     background-repeat: no-repeat;
 
 }
-
 
 
 .carousel-item {
@@ -43,8 +75,8 @@ header .searchbar {
     left: 0; /* Align to the left of the carousel item */
     width: 100%; /* Cover the entire width of the carousel item */
     height: 100%; /* Cover the entire height of the carousel item */
-    /* background: linear-gradient(90deg,rgba(20,20,20,0.95) 5%, rgba(0,0,0,0.07) 50%), linear-gradient(0deg , rgb(20,20,20)3%,rgba(0,0,0,0.07),30%); */
     /* background: linear-gradient(0deg , rgb(20,20,20)3%,rgba(0,0,0,0.07),30%); */
+    background-image: var(--bggradient);
     z-index: 1; /* Ensure the gradient is behind the image */
 }
 
@@ -55,7 +87,7 @@ header .searchbar {
 
  .carousel-item .carousel-caption {
     position: absolute; 
-    top: 40%; 
+    top: 35%; 
     left: 5%; 
     transform: translateY(-50%); /* Center vertically */
     color: #fff; /* Text color */
@@ -67,50 +99,18 @@ header .searchbar {
 }
 
 .carousel-item .carousel-caption h1 {
+    
+    font-family: var(--salsa-font);
+    font-size: 5rem;
+}
+
+.carousel-item .carousel-caption p {
+    
+    font-family: var(--poppins-font);
+}
+
+.carousel-item .carousel-caption h1 {
     margin-bottom: 10px;
 }
 
-/* ------------------------------------------------------------------------- */
 
-/* 
-.prev {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    z-index: 1;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    z-index: 1;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    background-color: rgba(0, 0, 0, 0.5);
-
-}
-
-.prev:hover,
-.next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-} */
