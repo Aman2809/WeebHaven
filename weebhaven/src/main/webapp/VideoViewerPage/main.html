@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Vertical List with Dark Background</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  .list-container {
+    background-color: #333;
+    padding: 20px;
+  }
+  .name-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .name-list li {
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+  }
+</style>
+</head>
+<body>
+
+<div class="list-container">
+  <ul id="nameList" class="name-list">
+    <!-- List items will be added here dynamically -->
+  </ul>
+</div>
+
+<script>
+  // Function to add a new name to the list
+  function addName(name) {
+    var list = document.getElementById("nameList");
+    var listItem = document.createElement("li");
+    listItem.textContent = name;
+    list.appendChild(listItem);
+  }
+
+  // Example: Adding some names to the list
+  addName("John");
+  addName("Mary");
+  addName("David");
+  addName("Susan");
+  addName("Michael");
+</script>
+
+</body>
+</html>
