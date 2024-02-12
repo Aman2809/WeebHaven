@@ -6,13 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const iconClose = document.querySelector('.icon-close');
 
     const body=document.body;
+    let keepPopupOpen = false;
 
     
     function togglePopup() {
-        wrapper.classList.toggle('active-popup');
-        // Add or remove a class to body to prevent scrolling
-        // body.classList.toggle('popup-open');
-        parent.postMessage('stop-scrolling', '*');
+        if (!keepPopupOpen) {
+            wrapper.classList.toggle('active-popup');
+            // Add or remove a class to body to prevent scrolling
+            // body.classList.toggle('popup-open');
+            parent.postMessage('stop-scrolling', '*');
+        }
     }
 
     function closePopup() {
@@ -34,14 +37,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     
-    btnPopup.addEventListener('click', togglePopup);
+    btnPopup.addEventListener('click', function() {
+        togglePopup();
+        keepPopupOpen = true; // Set the flag to true when the button is clicked
+    });
 
-    
-    iconClose.addEventListener('click', togglePopup);
-    
-    if (iconClose) {
-        iconClose.addEventListener('click', closePopup);
-      }
+
+    iconClose.addEventListener('click', function() {
+        keepPopupOpen = false; // Reset the flag when the close icon is clicked
+        closePopup();
+    });
 
 });
 
