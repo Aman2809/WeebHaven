@@ -14,17 +14,14 @@ public class user {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 20)
+    private String username;
+
     @Column(nullable = false, unique = true, length = 45)
     private String email;
 
     @Column(nullable = false, length = 64)
     private String password;
-
-    @Column(nullable = false, length = 20)
-    private String FirstName;
-
-    @Column(nullable = false, length = 20)
-    private String LastName;
 
     public long getId() {
         return id;
@@ -42,28 +39,20 @@ public class user {
         this.email = email;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstName() {
-        return FirstName;
-    }
-
-    public void setFirstName(String firstName) {
-        FirstName = firstName;
-    }
-
-    public String getLastName() {
-        return LastName;
-    }
-
-    public void setLastName(String lastName) {
-        LastName = lastName;
     }
 
 }
