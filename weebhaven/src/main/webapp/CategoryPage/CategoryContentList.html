@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horizontal Movable List View</title>
+<style>
+    .list-container {
+        width: 100%;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent items from wrapping to the next line */
+        scrollbar-width: none;
+        background-color: #333;
+    }
+    .list-item {
+        display: inline-block; /* Display items horizontally */
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #322e2e;
+        min-width: 150px; /* Set minimum width for items */
+        color: white; /* Set text color to white */
+    }
+</style>
+</head>
+<body>
+<h3 id='listtitle' style="color: #ccc;">Action</h3>
+<div class="list-container" id="listContainer">
+   <!--items will ve added on runtimr after get from server -->
+</div>
+
+<script>
+    // Function to add a new item to the list with an image and text
+    function addItem(imageSrc, altText, text) {
+        var listContainer = document.getElementById("listContainer");
+        var listItem = document.createElement("div");
+        listItem.className = "list-item";
+        listItem.innerHTML = '<img src="' + imageSrc + '" alt="' + altText + '"><p>' + text + '</p>';
+        listContainer.appendChild(listItem);
+    }
+
+    // Example: Adding items dynamically
+    addItem("res/complement.jpg" , "Image 1", "Item 1");
+    addItem("res/complement.jpg" , "Image 1", "Item 1");
+    addItem("res/complement.jpg" , "Image 1", "Item 1");
+    addItem("res/complement.jpg" , "Image 1", "Item 1");
+    addItem("res/complement.jpg" , "Image 1", "Item 1");
+    addItem("res/complement.jpg" , "Image 1", "Item 1");
+    addItem("res/complement.jpg" , "Image 1", "Item 1");
+    addItem("res/complement.jpg" , "Image 1", "Item 1");
+
+    // You can call addItem() function with appropriate arguments to add more items dynamically
+</script>
+
+
+</body>
+</html>

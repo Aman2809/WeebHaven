@@ -26,4 +26,7 @@ public class DemoController {
 		return "User registered successfully!";
 	}
 
+
+	
+
 }

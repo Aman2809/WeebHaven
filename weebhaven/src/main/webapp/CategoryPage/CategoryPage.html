@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <style>
+        /* Page background */
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            height:fit-content;  /* Stretch to full viewport height */
+            display: flex; /* Enable vertical alignment */
+            justify-content: center; /* Align items vertically in center */
+            align-items: center; /* Align items horizontally in center */
+        }
+
+        /* Container for iframes */
+        .iframe-container {
+            width: 100vw; /* Full window width */
+            max-width: 100%; /* Prevent horizontal overflow */
+            display: flex; /* Enable horizontal alignment */
+            flex-wrap: wrap; /* Wrap items for responsiveness */
+            flex-direction: column; /* Align items vertically */
+            grid-gap: 20px; /* Consistent spacing */
+        }
+
+        /* Iframe styling */
+        .category-iframe {
+            border: none; /* Remove border */
+            overflow: hidden; /* Hide scrollbars */
+            margin: 0; /* Remove margin */
+            padding: 0; /* Remove padding */
+            width: 100%; /* Full window width */
+            height: 240px; /* Fixed height of 240px */
+            flex: 1 1 auto; /* Distribute remaining space equally */
+            position: relative; /* Enable category title overlay */
+        }
+
+        /* Category title overlay (optional) */
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: #fff;
+            padding: 5px;
+            font-weight: bold;
+            z-index: 1; /* Ensure overlay is on top */
+        }
+    </style>
+</head>
+<body>
+    <div class="iframe-container"></div>
+
+    <script>
+        // Function to add an iframe with category title (optional)
+        function addCategoryIframe(categoryName, sourceURL) {
+            // Create the iframe element
+            const iframe = document.createElement('iframe');
+            iframe.src = sourceURL; // Adjust source path
+            iframe.classList.add('category-iframe');
+
+            // Optionally create the category title overlay
+            const overlay = document.createElement('div');
+            overlay.classList.add('category-overlay');
+            overlay.textContent = categoryName;
+            
+            // Modify H3 text inside the iframe content after loading
+            iframe.addEventListener('load', function() {
+                this.contentWindow.document.getElementById('listtitle').textContent = categoryName;
+            });
+            // Append overlay to iframe and add iframe to container
+            iframe.appendChild(overlay);
+            document.querySelector('.iframe-container').appendChild(iframe);
+        }
+
+        // Add some initial categories (optional)
+        addCategoryIframe('Category 1', 'CategoryContentList.html');
+        addCategoryIframe('Category 2', 'CategoryContentList.html');
+        addCategoryIframe('Category 2', 'CategoryContentList.html');
+        addCategoryIframe('Category 2', 'CategoryContentList.html');
+        addCategoryIframe('Category 2', 'CategoryContentList.html');
+        // You can dynamically add more iframes here using addCategoryIframe()
+    </script>
+</body>
+</html>
