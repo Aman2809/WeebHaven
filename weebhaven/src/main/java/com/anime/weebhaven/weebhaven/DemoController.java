@@ -1,29 +1,37 @@
 package com.anime.weebhaven.weebhaven;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/register")
 public class DemoController {
-
-	// @RequestMapping("index")
-	// public String index() {
-	// return "index";
-	// }
 
 	@Autowired
 	private RegistrationService registrationService;
 
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
+
 	@PostMapping
 	@ResponseBody
-	public String registerUser(@ModelAttribute user user) {
+	@RequestMapping("/register")
+	public ResponseEntity<String> registerUser(@ModelAttribute user user) {
 		registrationService.saveRegistrationDetails(user);
-		return "User registered successfully!";
+
+		// Return a JSON response with the success message
+		String message = "User registered successfully!";
+		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
 }
