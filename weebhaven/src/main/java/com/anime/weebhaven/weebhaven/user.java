@@ -24,6 +24,16 @@ public class user {
     @Column(nullable = false, length = 64)
     private String password;
 
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public user() {
     }
 
@@ -31,7 +41,7 @@ public class user {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
