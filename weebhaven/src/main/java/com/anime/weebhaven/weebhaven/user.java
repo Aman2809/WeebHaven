@@ -79,4 +79,11 @@ public class user {
         return this.username + " " + this.id + " " + this.password;
     }
 
+    public boolean compare(user u) {
+        if (u.getUsername().compareTo(this.username) == 0 && u.getPassword().compareTo(this.password) == 0)
+            return true;
+
+        return false;
+    }
+
 }
