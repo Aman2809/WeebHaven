@@ -16,9 +16,34 @@ public class DemoController {
 	@Autowired
 	private RegistrationService registrationService;
 
-	@GetMapping("/")
+	@GetMapping("/index")
 	public String index() {
 		return "index";
+	}
+
+	@GetMapping("/admin/home")
+	public String getAdmin() {
+		return "home_admin";
+	}
+
+	@GetMapping("/user/home")
+	public String getUser() {
+		return "home_user";
+	}
+
+	@GetMapping("/index/header")
+	public String header() {
+		return "header";
+	}
+
+	@GetMapping("/index/homepage")
+	public String homepage() {
+		return "FirstPage/homepage";
+	}
+
+	@GetMapping("/index/video")
+	public String video() {
+		return "VideoViewerPage/video";
 	}
 
 	@PostMapping
