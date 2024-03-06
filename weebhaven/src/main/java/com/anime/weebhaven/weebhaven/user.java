@@ -75,4 +75,8 @@ public class user {
         this.password = password;
     }
 
+    public String toString() {
+        return this.username + " " + this.id + " " + this.password;
+    }
+
 }

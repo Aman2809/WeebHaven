@@ -31,7 +31,7 @@ public class SecurityConfiguration {
             registry.anyRequest().authenticated();
         })
 
-                .formLogin(formLogin -> formLogin.loginPage("/login").permitAll())
+                .formLogin(formLogin -> formLogin.permitAll())
                 .headers(headers -> headers.frameOptions().disable())
 
                 .build();
