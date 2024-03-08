@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.val;
 
 @Entity
 @Table(name = "users")
@@ -79,11 +80,21 @@ public class user {
         return this.username + " " + this.id + " " + this.password;
     }
 
-    public boolean compare(user u) {
-        if (u.getUsername().compareTo(this.username) == 0 && u.getPassword().compareTo(this.password) == 0)
-            return true;
+    public static int USERNAME_NOT_MACHED = 0x67;
+    public static int PASSWORD_NOT_MACHED = 0x56;
+    public static int VALID_USER = 0x578;
 
-        return false;
+    public int compare(user u) {
+        int output = 0x00;
+        if (u.getUsername().compareTo(this.username) == 0)
+            if (u.getPassword().compareTo(this.password) == 0)
+                output = VALID_USER;
+            else
+                output = PASSWORD_NOT_MACHED;
+        else
+            output = USERNAME_NOT_MACHED;
+
+        return output;
     }
 
 }

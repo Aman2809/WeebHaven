@@ -2,9 +2,7 @@ package com.anime.weebhaven.weebhaven;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,20 +28,7 @@ public class DemoController {
 
 	@GetMapping("/index")
 	public String index() {
-
-		try {
-			List<user> userlist = getAllUsers();
-			if (userlist != null && userlist.size() > 0)
-				for (user u : userlist) {
-					System.out.println(u.toString());
-				}
-			else
-				System.err.println("USERLIST IS NULL");
-		} catch (Exception e) {
-			System.err.println("index :" + e.toString());
-		}
-
-		return "index";
+		return "index.html";
 	}
 
 	@GetMapping("/admin/home")
@@ -82,10 +67,27 @@ public class DemoController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
+	@PostMapping
+	@ResponseBody
+	@RequestMapping("/login")
+	public ResponseEntity<String> LoginUser(@ModelAttribute user us) {
+		String message;
+		if (isValid(us)) {
+			System.out.println("***********valid user**********");
+			message = "User registered successfully!";
+		} else {
+			System.out.println("***********invalid user**********");
+			message = "wrong credentials";
+		}
+
+		// Return a JSON response with the success message
+		return new ResponseEntity<>(message, HttpStatus.OK);
+	}
+
 	// database testing
 
 	public List<user> getAllUsers() {
-		String sql = "SELECT  id email password username role FROM users";
+		String sql = "SELECT  id, email, password, username, role FROM users";
 		return jdbcTemplate.query(sql, new UserRowMapper());
 	}
 
@@ -103,10 +105,31 @@ public class DemoController {
 		}
 	}
 
-	public boolean isValid(user u) {
+	// for checking is user is added is out database
 
-		return true;
-	}
+	public boolean isValid(user us) {
+		boolean isValid = false;
+		try {
+			List<user> userlist = getAllUsers();
+			if (userlist != null && userlist.size() > 0)
+				for (user u : userlist) {
+					int status = us.compare(u);
+					if (status == user.VALID_USER) {
+						isValid = true;
+						break;
+					}
+				}
+
+			else
+				System.err.println("USERLIST IS NULL");
+		} catch (
+
+		Exception e) {
+			System.err.println("index  ERROR:" + e.toString());
+		}
+
+		return isValid;
+	}// end of isValid user
 
 	private static class UserRowMapper implements RowMapper<user> {
 		@Override
