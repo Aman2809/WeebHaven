@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrollable Horizontal List</title>
     <style>
+        body {
+        background-color: #222;
+         color: #fff;
+        }
         .container {
             width: 100%;
             overflow-x: auto;
@@ -41,6 +45,7 @@
             const newItem = document.createElement('div');
             newItem.classList.add('item');
             newItem.dataset.videoPath = videoPath;
+            newItem.dataset.imagePath = imagePath;
             newItem.addEventListener('click', openVideoPage);
 
             const image = document.createElement('img');
@@ -60,7 +65,8 @@
 
         function openVideoPage(event) {
             const videoPath = event.currentTarget.dataset.videoPath;
-            window.open(`video.html?video=${videoPath}`, '_blank');
+            const imagePath = event.currentTarget.dataset.imagePath;
+            window.open(`video.html?video=${videoPath}&image=${imagePath}`, '_blank');
         }
 
 
