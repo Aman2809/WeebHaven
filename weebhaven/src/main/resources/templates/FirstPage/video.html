@@ -83,8 +83,8 @@
     <div class="row no-gutters h-100 no-margin">
       <div class="col-md-3">
         <div class="description">
-          <img src="res/YR_image.jpg" alt="Your name image">
-          <p>Two teenagers share a profound, magical connection upon discovering they are swapping bodies.Things manage to become even more complicated when the boy and girl decide to meet in person.</p>
+          <img  id="film_poster" src="" alt="Your name image">
+          <p  id="film_description">Two teenagers share a profound, magical connection upon discovering they are swapping bodies.Things manage to become even more complicated when the boy and girl decide to meet in person.</p>
         </div>
       </div>
       <div class="col-md-6 no-padding">
@@ -118,6 +118,13 @@
         const videoSource = document.getElementById('video-source');
         const urlParams = new URLSearchParams(window.location.search);
         const videoPath = urlParams.get('video');
+
+        const imagesrc=document.getElementById('film_poster');
+        const imagepath=urlParams.get('image');
+        imagesrc.src=imagepath;
+        imagesrc.load;
+
+        const description=document.getElementById('film_description');
 
         videoSource.src = videoPath;
         videoPlayer.load();
