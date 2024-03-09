@@ -90,8 +90,8 @@
       <div class="col-md-6 no-padding">
         <div class="video">
           <!-- Embed your video here -->
-          <video controls style="position: relative;">
-            <source src="/video" type="video/mp4">
+          <video  id="video-player" controls autoplay style="position: relative;">
+            <source id="video-source" src="" type="video/mp4">
           </video>
         </div>
       </div>
@@ -112,6 +112,16 @@
       </div>
     </div>
   </div>
+
+  <script>
+  const videoPlayer = document.getElementById('video-player');
+        const videoSource = document.getElementById('video-source');
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoPath = urlParams.get('video');
+
+        videoSource.src = videoPath;
+        videoPlayer.load();
+      </script>
   <!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
