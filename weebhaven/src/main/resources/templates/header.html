@@ -60,13 +60,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="category.html">Categories</a>
+                            <a style="color: white;" class="nav-link" href="category.html">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="new_releases.html">New Releases</a>
+                            <a  style="color: white;" class="nav-link" href="new_releases.html">New Releases</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="trending.html">Trendings</a>
+                            <a  style="color: white;" class="nav-link" href="trending.html">Trendings</a>
                         </li>
                     </ul>
                 </div>
@@ -80,7 +80,7 @@
                             <!-- <div class="input-group-append">
                                 <button class="btn btn-outline-light search_button" type="submit">Search</button>
                             </div> -->
-                            <button type="button" class="btn btn-primary btn-circle btnLogin-popup"  style=" border-radius: 50%;">Btn</button>
+                            <button type="button" class="btn btn-primary btn-circle btnLogin-popup"  style=" border-radius: 50%;"   onclick="openUserProfile()" >Btn</button>
                         </div>
                     </form>
                 </div>
@@ -106,7 +106,7 @@
                         <span class="icon">
                             <i class="fa-solid fa-lock"></i>
                         </span>
-                        <input type="password" required>
+                        <input type="password"  name="password" required>
                         <label>password</label>
                     </div>
     
@@ -234,7 +234,11 @@
 
     </main>
 
-
+    <script>
+        function openUserProfile() {
+             window.open("userProfile.html");
+            }
+    </script>
 
       
     <script src="https://kit.fontawesome.com/71127ee832.js" crossorigin="anonymous"></script>

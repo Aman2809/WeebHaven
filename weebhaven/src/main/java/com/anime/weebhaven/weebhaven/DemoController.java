@@ -2,6 +2,7 @@ package com.anime.weebhaven.weebhaven;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,8 @@ public class DemoController {
 
 	@GetMapping("/index")
 	public String index() {
-		return "index.html";
+
+		return "index";
 	}
 
 	@GetMapping("/admin/home")
@@ -67,14 +69,31 @@ public class DemoController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
+	@GetMapping("/history")
+	public List<VideoItem> getUserHistory() {
+
+		// for testing
+		List<VideoItem> items = new ArrayList<>();
+		try {
+			List<user> list = getAllUsers();
+			items = list.get(0).getAbsoluteHistory(jdbcTemplate);
+		} catch (Exception e) {
+			System.err.println("history error :" + e.toString());
+		}
+
+		return items;
+
+	}
+
 	@PostMapping
 	@ResponseBody
 	@RequestMapping("/login")
 	public ResponseEntity<String> LoginUser(@ModelAttribute user us) {
 		String message;
+		System.out.println(us.toString());
 		if (isValid(us)) {
 			System.out.println("***********valid user**********");
-			message = "User registered successfully!";
+			message = "User login successfully!";
 		} else {
 			System.out.println("***********invalid user**********");
 			message = "wrong credentials";
@@ -84,11 +103,36 @@ public class DemoController {
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
+	public void addHistory(String videoname) {
+
+	}
+
+	public void getHistory(String videoname) {
+
+	}
+
 	// database testing
 
+	public user getUser(user us) {
+		user s = null;
+		List<user> list = getAllUsers();
+		for (user u : list) {
+			if (u.compare(us) == 0)
+				s = u;
+		}
+		return s;
+	}
+
+	private List<user> userList;
+	private boolean useradded = false;
+
 	public List<user> getAllUsers() {
-		String sql = "SELECT  id, email, password, username, role FROM users";
-		return jdbcTemplate.query(sql, new UserRowMapper());
+		if (userList == null || useradded) {
+			String sql = "SELECT  id, email, password, username, role, string_list FROM users";
+			userList = jdbcTemplate.query(sql, new UserRowMapper());
+		}
+
+		return userList;
 	}
 
 	public void adduser(user u) {
@@ -100,6 +144,8 @@ public class DemoController {
 
 		if (rowsAffected > 0) {
 			System.out.println("*****User added successfully!*****");
+			useradded = true;
+			getAllUsers();
 		} else {
 			System.out.println("Failed to add user.");
 		}
@@ -140,6 +186,7 @@ public class DemoController {
 			user.setPassword(rs.getString("password"));
 			user.setUsername(rs.getString("username"));
 			user.setRole(rs.getString("role"));
+			user.addHistory(rs.getString("string_list"));
 			return user;
 		}
 	}

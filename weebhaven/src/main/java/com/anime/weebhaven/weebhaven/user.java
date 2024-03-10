@@ -1,5 +1,15 @@
 package com.anime.weebhaven.weebhaven;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import java.util.List;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +36,38 @@ public class user {
     private String password;
 
     private String role;
+
+    private String user_hisyory;
+
+    public String getUserHistory() {
+        return user_hisyory;
+    }
+
+    public List<String> getUserHistoryList() {
+        return Arrays.asList(user_hisyory.split(","));
+    }
+
+    public void addHistory(String data) {
+        if (user_hisyory == null)
+            user_hisyory = data;
+        else
+            user_hisyory = user_hisyory + "," + data;
+    }
+
+    public List<VideoItem> getAbsoluteHistory(JdbcTemplate Jdbctemplate) {
+        List<VideoItem> list = new ArrayList<>();
+        List<String> history = getUserHistoryList();
+
+        for (String id : history) {
+            list.add(getVideoItemByID(id, Jdbctemplate));
+        }
+        return list;
+    }
+
+    public VideoItem getVideoItemByID(String id, JdbcTemplate jdbcTemplate) {
+        String sql = "SELECT  id, name, poster_path, video_path FROM videodata WHERE id = " + id;
+        return jdbcTemplate.queryForObject(sql, new VideoItemRowMapper());
+    }
 
     public String getRole() {
         return role;
@@ -70,6 +112,18 @@ public class user {
         this.password = password;
     }
 
+    public void invalidate(JdbcTemplate jdbcTemplate) {
+        // String sql = "UPDATE users SET password = ? WHERE id = ?";
+        // jdbcTemplate.update(sql, password, id);
+
+        // sql = "UPDATE users SET role = ? WHERE id = ?";
+        // jdbcTemplate.update(sql, role, id);
+
+        String sql = "UPDATE users SET string_list = ? WHERE id = ?";
+        jdbcTemplate.update(sql, user_hisyory, id);
+
+    }
+
     public user(String username, String email, String password) {
         this.username = username;
         this.email = email;
@@ -95,6 +149,15 @@ public class user {
             output = USERNAME_NOT_MACHED;
 
         return output;
+    }
+
+    private static class VideoItemRowMapper implements RowMapper<VideoItem> {
+        @Override
+        public VideoItem mapRow(ResultSet rs, int rowNum) throws SQLException {
+            VideoItem videoItem = new VideoItem(rs.getString("id"), rs.getString("name"), rs.getString("poster_path"),
+                    rs.getString("video_path"));
+            return videoItem;
+        }
     }
 
 }

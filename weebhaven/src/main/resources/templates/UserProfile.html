@@ -69,9 +69,9 @@
   <div class="container">
     <div class="user-details">
       <!-- Add user details here -->
-      <img class="user-image" src="res/the_wind_rises_poster.jpg" alt="User Profile">
-      <div class="user-name">John Doe</div>
-      <div class="user-email">john.doe@example.com</div>
+      <img  id="user_pic" class="user-image" src="res/the_wind_rises_poster.jpg" alt="User Profile">
+      <div id="username" class="user-name">John Doe</div>
+      <div is="userEmail" class="user-email">john.doe@example.com</div>
     </div>
     <div class="item-list">
       <h2>Item List</h2>
@@ -80,10 +80,16 @@
   </div>
 
   <script>
-     function addItem(imagePath, itemName) {
+     
+     
+
+    function addItem(imagePath, itemName, videoPath) {
       const itemContainer = document.getElementById('item-container');
       const newItem = document.createElement('div');
       newItem.className = 'item';
+      newItem.onclick = function() {
+        window.open(`FirstPage/video.html?video=${videoPath}&image=${imagePath}`, '_blank');
+      };
 
       const img = document.createElement('img');
       img.src = imagePath;
@@ -97,15 +103,25 @@
       itemContainer.appendChild(newItem);
     }
 
-    addItem("res/the_wind_rises_poster.jpg" , "The wind rises ");
-    addItem("res/whisker_away_poster.jpg" , "The whisker away");
-    addItem("res/whisker_away_poster.jpg" , "The whisker away");
-    addItem("res/whisker_away_poster.jpg" , "The whisker away");
-    addItem("res/whisker_away_poster.jpg" , "The whisker away");
-    addItem("res/whisker_away_poster.jpg" , "The whisker away");
-    addItem("res/whisker_away_poster.jpg" , "The whisker away");
-    addItem("res/whisker_away_poster.jpg" , "The whisker away");
-    addItem("res/whisker_away_poster.jpg" , "The whisker away");
+
+  
+    fetch('/history')
+            .then(response => response.json())
+            .then(data => {
+                const listElement = document.getElementById('item-container');
+                data.forEach(item => {
+                    
+                   addItem(item.poster, item.name , item.video);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+
+   // addItem("res/the_wind_rises_poster.jpg" , "The wind rises " , "F:/spring_projects/weebhaven_videos/the_wind_rises.mp4");
+    //addItem("res/whisker_away_poster.jpg" , "The whisker away" , "F:/spring_projects/weebhaven_videos/the_wind_rises.mp4");
+    //addItem("res/whisker_away_poster.jpg" , "The whisker away" , "F:/spring_projects/weebhaven_videos/the_wind_rises.mp4");
+    //addItem("res/whisker_away_poster.jpg" , "The whisker away" , "F:/spring_projects/weebhaven_videos/the_wind_rises.mp4");
+    
+    
   </script>
 </body>
 </html>
