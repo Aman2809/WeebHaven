@@ -77,10 +77,37 @@
                         <div class="input-group">
                             <input class="form-control searchbar mr-2" type="search" placeholder="Search"
                                 aria-label="Search" style="border-radius: 5px;">
-                            <!-- <div class="input-group-append">
-                                <button class="btn btn-outline-light search_button" type="submit">Search</button>
-                            </div> -->
-                            <button type="button" class="btn btn-primary btn-circle btnLogin-popup"  style=" border-radius: 50%;"   onclick="openUserProfile()" >Btn</button>
+                            <!-- <button type="button" class="btn btn-primary btn-circle btnLogin-popup"  style=" border-radius: 50%;"   onclick="openUserProfile()" >Btn</button> -->
+
+                            <img src="weeb_haven_logo.png" alt="logo" class="user-pic" onclick="toggleMenu()">
+
+                            <div class="sub-menu-wrap" id="subMenu">
+                                <div class="sub-menu">
+                                    <div class="user-info">
+                                        <img src="weeb_haven_logo.png" >
+                                        <h3>Aman Jha</h3>
+                                    </div>
+                                    <hr>
+
+
+                                    <a href="#" onclick="openUserProfile()" class="sub-menu-link">
+                                        <img src="profile.png" >
+                                        <p>My Profile</p>
+                                        <span>></span>
+                                    </a>
+                                    
+                                    <a href="#"  class="sub-menu-link btnLogin-popup">
+                                        <img src="login.png" >
+                                        <p>Login</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub-menu-link" >
+                                        <img src="logout.png" >
+                                        <p>Logout</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -106,7 +133,7 @@
                         <span class="icon">
                             <i class="fa-solid fa-lock"></i>
                         </span>
-                        <input type="password"  name="password" required>
+                        <input type="password" id="password" name="password" required>
                         <label>password</label>
                     </div>
     
@@ -249,6 +276,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+        <script>
+            let subMenu=document.getElementById("subMenu");
+            function toggleMenu(){
+                subMenu.classList.toggle("open-menu");
+            }
+        </script>
 </body>
 
 </html>
